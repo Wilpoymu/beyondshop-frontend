@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "start": "serve dist -s -n -l ${PORT:-3000}",
+    "start": "serve dist -s -n -l ${PORT:-8080}",
     "preview": "vite preview",
     "format": "npx prettier --write ."
   },
