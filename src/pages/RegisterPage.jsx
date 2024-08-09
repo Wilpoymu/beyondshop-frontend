@@ -10,7 +10,7 @@ function RegisterPage() {
     formState: { errors },
   } = useForm();
   const { signup, isAuthenticated, errors: registerErrors } = useAuth();
-  const navigate = useNavigate;
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (isAuthenticated) navigate('/products');
