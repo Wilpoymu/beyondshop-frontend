@@ -12,19 +12,21 @@ function Navbar() {
       <ul className="flex gap-x-4">
         {isAuthenticated ? (
           <>
-          <li>
-            <h1 className='flex justify-center items-center py-5 px-2 h-full'>Welcome {user.username}</h1>
-          </li>
-            <li className='flex justify-center items-center py-5 px-2 h-full rounded-md hover:bg-gray-300 hover:text-gray-800'>
+            <li>
+              <h1 className="flex justify-center items-center py-5 px-2 h-full">
+                Welcome {user.username}
+              </h1>
+            </li>
+            <li className="flex justify-center items-center py-5 px-2 h-full rounded-md hover:bg-gray-300 hover:text-gray-800">
               <Link to={'/products'}>Products</Link>
             </li>
-            <li className='flex justify-center items-center py-5 px-2 h-full rounded-md hover:bg-gray-300 hover:text-gray-800'>
+            <li className="flex justify-center items-center py-5 px-2 h-full rounded-md hover:bg-gray-300 hover:text-gray-800">
               <Link to={'/add-product'}>Add Product</Link>
             </li>
-            <li className='flex justify-center items-center py-5 px-2 h-full rounded-md hover:bg-gray-300 hover:text-gray-800'>
+            <li className="flex justify-center items-center py-5 px-2 h-full rounded-md hover:bg-gray-300 hover:text-gray-800">
               <Link to={'/profile'}>Profile</Link>
             </li>
-            <li className='flex justify-center items-center py-5 px-2 h-full rounded-md hover:bg-gray-300 hover:text-gray-800'>
+            <li className="flex justify-center items-center py-5 px-2 h-full rounded-md hover:bg-gray-300 hover:text-gray-800">
               <Link
                 to={'/'}
                 onClick={() => {
@@ -37,10 +39,10 @@ function Navbar() {
           </>
         ) : (
           <>
-            <li className='flex justify-center items-center py-5 px-2 h-full rounded-md hover:bg-gray-300 hover:text-gray-800'>
+            <li className="flex justify-center items-center py-5 px-2 h-full rounded-md hover:bg-gray-300 hover:text-gray-800">
               <Link to={'/login'}>Login</Link>
             </li>
-            <li className='flex justify-center items-center py-5 px-2 h-full rounded-md hover:bg-gray-300 hover:text-gray-800'>
+            <li className="flex justify-center items-center py-5 px-2 h-full rounded-md hover:bg-gray-300 hover:text-gray-800">
               <Link to={'/register'}>Register</Link>
             </li>
           </>
