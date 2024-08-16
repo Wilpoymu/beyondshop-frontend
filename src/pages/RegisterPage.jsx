@@ -64,7 +64,12 @@ function RegisterPage() {
             <p className="text-red-500">{errors.password.message}</p>
           )}
 
-          <button type="submit">Registrar</button>
+          <button
+            type="submit"
+            className="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 my-2 rounded-md"
+          >
+            Register
+          </button>
         </form>
 
         <p className="flex gap-x2 justify-between">
