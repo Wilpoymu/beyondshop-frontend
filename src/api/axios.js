@@ -2,7 +2,9 @@ import axios from 'axios';
 import { API_URL } from '../config';
 
 const getTokenFromCookies = () => {
-  const tokenCookie = document.cookie.split('; ').find(row => row.startsWith('token='));
+  const tokenCookie = document.cookie
+    .split('; ')
+    .find((row) => row.startsWith('token='));
   return tokenCookie ? tokenCookie.split('=')[1] : null;
 };
 
