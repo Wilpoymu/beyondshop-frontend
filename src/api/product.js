@@ -11,4 +11,3 @@ export const updateProductsRequest = (product) =>
   axios.put(`/products/${product._id}`, product);
 
 export const deleteProductsRequest = (id) => axios.delete(`/products/${id}`);
-

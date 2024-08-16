@@ -9,26 +9,30 @@ import ProductFormPage from './pages/ProductFormPage';
 import ProfilePage from './pages/ProfilePage';
 import ProtectedRoute from './ProtectedRoute';
 import { ProductProvider } from './context/ProductContext';
+import Navbar from './components/Navbar';
 
 function App() {
   return (
     <AuthProvider>
       <ProductProvider>
         <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="/register" element={<RegisterPage />} />
-            <Route path="/products" element={<ProductsPage />} />
+          <main className="container mx-auto px-10">
+            <Navbar />
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/login" element={<LoginPage />} />
+              <Route path="/register" element={<RegisterPage />} />
+              <Route path="/products" element={<ProductsPage />} />
 
-            <Route element={<ProtectedRoute />}>
-              <Route path="/add-product" element={<ProductFormPage />} />
-              <Route path="/products/:id" element={<ProductFormPage />} />
-              <Route path="/profile" element={<ProfilePage />} />
-            </Route>
+              <Route element={<ProtectedRoute />}>
+                <Route path="/add-product" element={<ProductFormPage />} />
+                <Route path="/products/:id" element={<ProductFormPage />} />
+                <Route path="/profile" element={<ProfilePage />} />
+              </Route>
 
-            <Route path="*" element={<h1>Not Found</h1>} />
-          </Routes>
+              <Route path="*" element={<h1>Not Found</h1>} />
+            </Routes>
+          </main>
         </BrowserRouter>
       </ProductProvider>
     </AuthProvider>
