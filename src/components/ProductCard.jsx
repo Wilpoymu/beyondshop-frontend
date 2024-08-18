@@ -3,7 +3,29 @@ import { useProduct } from '../context/ProductContext';
 import { Link } from 'react-router-dom';
 
 function ProductCard({ product }) {
-  const { deleteProduct } = useProduct();
+  const { deleteProduct, getDollarPrice } = useProduct();
+
+  function currencyFormatter({ currency, value }) {
+    const formatter = new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      minimumFractionDigits: 2,
+      currency,
+    });
+    return formatter.format(value);
+  }
+
+  const value = product.price;
+  const colombianPrice = Math.round(product.price * getDollarPrice());
+
+  const dollar = currencyFormatter({
+    currency: 'USD',
+    value,
+  });
+
+  const peso = currencyFormatter({
+    currency: 'COP',
+    value: colombianPrice,
+  });
 
   return (
     <div className="bg-zinc-800 max-w-md w-full p-10 rounded-md">
@@ -17,10 +39,11 @@ function ProductCard({ product }) {
           >
             delete
           </button>
-          <Link to={`/task/${product._id}`}>edit</Link>
+          <Link to={`/products/${product._id}`}>edit</Link>
         </div>
-      </header>
-      <p className="text-slate-300">{product.price}</p> <br />
+      </header> <br />
+      <p className="text-slate-300">Price USD: {dollar}</p>
+      <p className="text-slate-300">Price: {peso}</p>
     </div>
   );
 }
