@@ -1,12 +1,32 @@
 import { useForm } from 'react-hook-form';
 import { useProduct } from '../context/ProductContext';
+import { useNavigate, useParams } from 'react-router-dom';
+import { useEffect } from 'react';
 
 function ProductFormPage() {
-  const { register, handleSubmit } = useForm();
-  const { createProduct } = useProduct();
+  const { register, handleSubmit, setValue } = useForm();
+  const { createProduct, getProduct, updateProduct } = useProduct();
+  const navigate = useNavigate();
+  const params = useParams();
+
+  useEffect(() => {
+    async function loadProduct() {
+      if (params.id) {
+        const product = await getProduct(params.id);
+        setValue('name', product.name);
+        setValue('price', product.price);
+      }
+    }
+    loadProduct();
+  }, [getProduct, params.id, setValue]);
 
   const onSubmit = handleSubmit((data) => {
-    createProduct(data);
+    if (params.id) {
+      updateProduct(params.id, data);
+    } else {
+      createProduct(data);
+    }
+    navigate('/products');
   });
 
   return (
@@ -26,7 +46,12 @@ function ProductFormPage() {
             placeholder="Product price"
           />
 
-          <button type="submit">Save product</button>
+          <button
+            className="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 my-2 rounded-md"
+            type="submit"
+          >
+            Save product
+          </button>
         </form>
       </div>
     </div>

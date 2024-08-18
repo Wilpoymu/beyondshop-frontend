@@ -7,7 +7,7 @@ export const getProductRequest = (id) => axios.get(`/products/${id}`);
 export const createProductsRequest = (product) =>
   axios.post('/products', product);
 
-export const updateProductsRequest = (product) =>
-  axios.put(`/products/${product._id}`, product);
+export const updateProductsRequest = (id, product) =>
+  axios.put(`/products/${id}`, product);
 
 export const deleteProductsRequest = (id) => axios.delete(`/products/${id}`);

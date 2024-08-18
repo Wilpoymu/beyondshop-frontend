@@ -4,7 +4,10 @@ import {
   createProductsRequest,
   getProductsRequest,
   deleteProductsRequest,
+  getProductRequest,
+  updateProductsRequest,
 } from '../api/product';
+import ax from 'axios';
 
 const ProductContext = createContext();
 
@@ -19,6 +22,15 @@ export const useProduct = () => {
 
 export function ProductProvider({ children }) {
   const [products, setProducts] = useState([]);
+  const [dollarPrice, setDollarPrice] = useState([]);
+
+  const getDollarPrice = () => {
+    ax.get('https://www.datos.gov.co/resource/mcec-87by.json').then((res) => {
+      setDollarPrice(res.data[0].valor);
+    });
+
+    return dollarPrice;
+  };
 
   const getProducts = async () => {
     const res = await getProductsRequest();
@@ -44,9 +56,34 @@ export function ProductProvider({ children }) {
     }
   };
 
+  const getProduct = async (id) => {
+    try {
+      const res = await getProductRequest(id);
+      return res.data;
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const updateProduct = async (id, product) => {
+    try {
+      updateProductsRequest(id, product);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <ProductContext.Provider
-      value={{ products, createProduct, getProducts, deleteProduct }}
+      value={{
+        products,
+        createProduct,
+        getProducts,
+        deleteProduct,
+        getProduct,
+        updateProduct,
+        getDollarPrice,
+      }}
     >
       {children}
     </ProductContext.Provider>
