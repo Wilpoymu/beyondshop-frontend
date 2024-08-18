@@ -41,7 +41,8 @@ function ProductCard({ product }) {
           </button>
           <Link to={`/products/${product._id}`}>edit</Link>
         </div>
-      </header> <br />
+      </header>{' '}
+      <br />
       <p className="text-slate-300">Price USD: {dollar}</p>
       <p className="text-slate-300">Price: {peso}</p>
     </div>

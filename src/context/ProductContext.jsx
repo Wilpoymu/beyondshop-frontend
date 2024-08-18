@@ -25,11 +25,9 @@ export function ProductProvider({ children }) {
   const [dollarPrice, setDollarPrice] = useState([]);
 
   const getDollarPrice = () => {
-    ax
-      .get('https://www.datos.gov.co/resource/mcec-87by.json')
-      .then((res) => {
-        setDollarPrice(res.data[0].valor);
-      });
+    ax.get('https://www.datos.gov.co/resource/mcec-87by.json').then((res) => {
+      setDollarPrice(res.data[0].valor);
+    });
 
     return dollarPrice;
   };

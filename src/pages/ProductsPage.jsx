@@ -9,7 +9,7 @@ function ProductsPage() {
     getProducts();
   }, []);
 
-  if (products.length === 0) return (<h1>No Products</h1> );
+  if (products.length === 0) return <h1>No Products</h1>;
 
   return (
     <div className="grid grid-cols-3 gap-2">
