@@ -12,7 +12,7 @@ function Navbar() {
         <h1 className="text-2xl font-bold">Beyond Shop</h1>
       </Link>
       <h1 className="text-2xl font-bold">Dollar Price: {getDollarPrice()}</h1>
-      <ul className="flex gap-x-4">
+      <ul className="flex flex-wrap gap-x-4">
         {isAuthenticated ? (
           <>
             <li>
@@ -21,10 +21,10 @@ function Navbar() {
               </h1>
             </li>
             <li className="flex justify-center items-center py-5 px-2 h-full rounded-md hover:bg-gray-300 hover:text-gray-800">
-              <Link to={'/products'}>Products</Link>
+              <Link to={'/orders'}>Orders</Link>
             </li>
             <li className="flex justify-center items-center py-5 px-2 h-full rounded-md hover:bg-gray-300 hover:text-gray-800">
-              <Link to={'/add-product'}>Add Product</Link>
+              <Link to={'/products'}>Products</Link>
             </li>
             <li className="flex justify-center items-center py-5 px-2 h-full rounded-md hover:bg-gray-300 hover:text-gray-800">
               <Link to={'/profile'}>Profile</Link>
