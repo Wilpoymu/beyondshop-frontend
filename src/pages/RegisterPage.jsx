@@ -13,8 +13,8 @@ function RegisterPage() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (isAuthenticated) navigate('/products');
-  }, [isAuthenticated]);
+    if (isAuthenticated) navigate('/');
+  }, [isAuthenticated, navigate]);
 
   const onSubmit = handleSubmit(async (values) => {
     signup(values);

@@ -10,30 +10,44 @@ import ProfilePage from './pages/ProfilePage';
 import ProtectedRoute from './ProtectedRoute';
 import { ProductProvider } from './context/ProductContext';
 import Navbar from './components/Navbar';
+import CreateOrdersPage from './pages/CreateOrdersPage';
+import { CartProvider } from './context/CartContext';
+import NotFoundPage from './pages/NotFoundPage';
+import { CustomerProvider } from './context/CustomerContext';
+import OrdersPage from './pages/OrdersPage';
 
 function App() {
   return (
     <AuthProvider>
       <ProductProvider>
-        <BrowserRouter>
-          <main className="container mx-auto px-10">
-            <Navbar />
-            <Routes>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/login" element={<LoginPage />} />
-              <Route path="/register" element={<RegisterPage />} />
-              <Route path="/products" element={<ProductsPage />} />
+        <CustomerProvider>
+          <CartProvider>
+            <BrowserRouter>
+              <main className="container mx-auto px-10">
+                <Navbar />
+                <Routes>
+                  <Route path="/" element={<HomePage />} />
+                  <Route path="/login" element={<LoginPage />} />
+                  <Route path="/register" element={<RegisterPage />} />
+                  <Route path="/products" element={<ProductsPage />} />
+                  <Route path="/orders" element={<OrdersPage />} />
 
-              <Route element={<ProtectedRoute />}>
-                <Route path="/add-product" element={<ProductFormPage />} />
-                <Route path="/products/:id" element={<ProductFormPage />} />
-                <Route path="/profile" element={<ProfilePage />} />
-              </Route>
+                  <Route element={<ProtectedRoute />}>
+                    <Route
+                      path="/create-orders"
+                      element={<CreateOrdersPage />}
+                    />
+                    <Route path="/add-product" element={<ProductFormPage />} />
+                    <Route path="/products/:id" element={<ProductFormPage />} />
+                    <Route path="/profile" element={<ProfilePage />} />
+                  </Route>
 
-              <Route path="*" element={<h1>Not Found</h1>} />
-            </Routes>
-          </main>
-        </BrowserRouter>
+                  <Route path="*" element={<NotFoundPage />} />
+                </Routes>
+              </main>
+            </BrowserRouter>
+          </CartProvider>
+        </CustomerProvider>
       </ProductProvider>
     </AuthProvider>
   );

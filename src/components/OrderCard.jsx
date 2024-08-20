@@ -1,14 +1,19 @@
 import PropTypes from 'prop-types';
 import { useProduct } from '../context/ProductContext';
-import { Link } from 'react-router-dom';
 import currencyFormatter from '../utils/currencyFormater';
 
-function ProductCard({ product }) {
+function OrderCard({ order }) {
   const { deleteProduct, getDollarPrice } = useProduct();
 
+  //format the date full date in DD/MM/YYYY
+  const date = new Date(order.orderDate);
+  const day = date.getDate();
+  const month = date.getMonth() + 1;
+  const year = date.getFullYear();
+  const formattedDate = `${day}/${month}/${year}`;
 
-  const value = product.price;
-  const colombianPrice = Math.round(product.price * getDollarPrice());
+  const value = order.totalPrice;
+  const colombianPrice = Math.round(order.totalPrice * getDollarPrice());
 
   const dollar = currencyFormatter({
     currency: 'USD',
@@ -23,16 +28,15 @@ function ProductCard({ product }) {
   return (
     <div className="bg-zinc-800 max-w-md w-full p-10 rounded-md">
       <header className="flex justify-between">
-        <h1 className="text-2xl font-bold">{product.name}</h1>
+        <h1 className="text-2xl font-bold">{formattedDate}</h1>
         <div className="flex gap-x-2 items-center">
           <button
             onClick={() => {
-              deleteProduct(product._id);
+              deleteProduct(order._id);
             }}
           >
             delete
           </button>
-          <Link to={`/products/${product._id}`}>edit</Link>
         </div>
       </header>{' '}
       <br />
@@ -42,12 +46,12 @@ function ProductCard({ product }) {
   );
 }
 
-export default ProductCard;
+export default OrderCard;
 
-ProductCard.propTypes = {
-  product: PropTypes.shape({
+OrderCard.propTypes = {
+  order: PropTypes.shape({
     _id: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired,
+    orderDate: PropTypes.string.isRequired,
+    totalPrice: PropTypes.number.isRequired,
   }).isRequired,
 };

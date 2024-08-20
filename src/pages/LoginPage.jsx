@@ -17,8 +17,8 @@ function LoginPage() {
   });
 
   useEffect(() => {
-    if (isAuthenticated) navigate('/products');
-  }, [isAuthenticated]);
+    if (isAuthenticated) navigate('/');
+  }, [isAuthenticated, navigate]);
 
   return (
     <div className="flex h-[calc(100vh-100px)] items-center justify-center">
