@@ -32,7 +32,6 @@ function HomePage() {
   const lastestOrder = orders[orders.length - 1]
     ? orders[orders.length - 1].clientId.name
     : 'No orders yet';
-  console.log('🚀 ~ HomePage ~ orders:', orders);
 
   return (
     <div className="p-6">
