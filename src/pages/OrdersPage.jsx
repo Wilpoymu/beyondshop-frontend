@@ -1,18 +1,10 @@
-import { useEffect, useState } from 'react';
-import { getOrdersRequest } from '../api/order';
+import { useEffect } from 'react';
 import OrderCard from '../components/OrderCard';
+import { useOrder } from '../context/OrderContext';
 
 function OrdersPage() {
-  const [orders, setOrders] = useState([]);
+  const { getOrders, orders } = useOrder();
 
-  const getOrders = async () => {
-    try {
-      const res = await getOrdersRequest();
-      setOrders(res.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
   useEffect(() => {
     getOrders();
