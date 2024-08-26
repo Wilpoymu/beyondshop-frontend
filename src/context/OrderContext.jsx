@@ -62,7 +62,7 @@ export function OrderProvider({ children }) {
       const res = await getOrderRequest(id);
       return res.data;
     } catch (error) {
-      console.error(error);
+        console.error(error);
     }
   };
 
