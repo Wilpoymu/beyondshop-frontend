@@ -68,6 +68,8 @@ function CreateOrdersPage() {
     value: calculatePrice() * getDollarPrice(),
   });
 
+  const totalPrice = calculatePrice();
+
   const handleCreateOrder = () => {
     if (!selectedCustomer) {
       console.log('No customer selected');
@@ -76,13 +78,13 @@ function CreateOrdersPage() {
 
     const order = {
       clientId: selectedCustomer,
+      totalPrice: totalPrice,
       productsDetails: cart.map((product) => ({
         productId: product._id,
         quantity: product.quantity,
         price: product.price * product.quantity,
         unitPrice: product.price,
       })),
-      totalPrice: calculatePrice(),
     };
 
     createOrder(order);
