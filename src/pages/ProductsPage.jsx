@@ -2,14 +2,14 @@ import { useEffect } from 'react';
 import { useProduct } from '../context/ProductContext';
 import ProductCard from '../components/ProductCard';
 import { Link } from 'react-router-dom';
-import '../index.css'; // Asegúrate de importar el archivo de estilos
+import '../index.css';
 
 function ProductsPage() {
   const { getProducts, products } = useProduct();
 
   useEffect(() => {
     getProducts();
-  }, [getProducts]); // Agregar getProducts como dependencia
+  }, []);
 
   if (!products.length) {
     return (
