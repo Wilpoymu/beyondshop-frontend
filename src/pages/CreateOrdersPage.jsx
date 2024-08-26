@@ -6,11 +6,13 @@ import currencyFormatter from '../utils/currencyFormater';
 import { useCustomer } from '../context/CustomerContext';
 import Option from '../components/Option';
 import { createOrderRequest } from '../api/order';
+import { useNavigate } from 'react-router-dom';
 
 function CreateOrdersPage() {
   const { products, getProducts, getDollarPrice } = useProduct();
   const { addToCart, cart } = useCart();
   const { customers, getCustomers } = useCustomer();
+  const navigate = useNavigate();
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [quantity] = useState(1);
   const [selectedCustomer, setSelectedCustomer] = useState(null);
@@ -83,8 +85,7 @@ function CreateOrdersPage() {
     };
 
     createOrderRequest(order);
-
-    console.log('Order created:', order);
+    navigate('/orders');
   };
 
   if (products.length === 0) return <h1>No Products</h1>;
