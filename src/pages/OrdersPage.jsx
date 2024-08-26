@@ -2,14 +2,14 @@ import { useEffect } from 'react';
 import OrderCard from '../components/OrderCard';
 import { useOrder } from '../context/OrderContext';
 import { Link } from 'react-router-dom';
-import '../index.css'; // Asegúrate de importar el archivo de estilos
+import '../index.css';
 
 function OrdersPage() {
   const { getOrders, orders } = useOrder();
 
   useEffect(() => {
     getOrders();
-  }, [getOrders]);
+  }, []);
 
   if (!orders.length) {
     return (
