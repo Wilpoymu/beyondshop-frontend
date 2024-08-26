@@ -16,6 +16,7 @@ import NotFoundPage from './pages/NotFoundPage';
 import { CustomerProvider } from './context/CustomerContext';
 import OrdersPage from './pages/OrdersPage';
 import ViewOrderDetails from './pages/ViewOrderDetails';
+import { OrderProvider } from './context/OrderContext';
 
 function App() {
   return (
@@ -23,31 +24,42 @@ function App() {
       <ProductProvider>
         <CustomerProvider>
           <CartProvider>
-            <BrowserRouter>
-              <main className="container mx-auto px-10">
-                <Navbar />
-                <Routes>
-                  <Route path="/" element={<HomePage />} />
-                  <Route path="/login" element={<LoginPage />} />
-                  <Route path="/register" element={<RegisterPage />} />
-                  <Route path="/products" element={<ProductsPage />} />
-                  <Route path="/orders" element={<OrdersPage />} />
+            <OrderProvider>
+              <BrowserRouter>
+                <main className="container mx-auto px-10">
+                  <Navbar />
+                  <Routes>
+                    <Route path="/" element={<HomePage />} />
+                    <Route path="/login" element={<LoginPage />} />
+                    <Route path="/register" element={<RegisterPage />} />
+                    <Route path="/products" element={<ProductsPage />} />
+                    <Route path="/orders" element={<OrdersPage />} />
 
-                  <Route element={<ProtectedRoute />}>
-                    <Route
-                      path="/create-orders"
-                      element={<CreateOrdersPage />}
-                    />
-                    <Route path="/orders/:id" element={<ViewOrderDetails />} />
-                    <Route path="/add-product" element={<ProductFormPage />} />
-                    <Route path="/products/:id" element={<ProductFormPage />} />
-                    <Route path="/profile" element={<ProfilePage />} />
-                  </Route>
+                    <Route element={<ProtectedRoute />}>
+                      <Route
+                        path="/create-orders"
+                        element={<CreateOrdersPage />}
+                      />
+                      <Route
+                        path="/orders/:id"
+                        element={<ViewOrderDetails />}
+                      />
+                      <Route
+                        path="/add-product"
+                        element={<ProductFormPage />}
+                      />
+                      <Route
+                        path="/products/:id"
+                        element={<ProductFormPage />}
+                      />
+                      <Route path="/profile" element={<ProfilePage />} />
+                    </Route>
 
-                  <Route path="*" element={<NotFoundPage />} />
-                </Routes>
-              </main>
-            </BrowserRouter>
+                    <Route path="*" element={<NotFoundPage />} />
+                  </Routes>
+                </main>
+              </BrowserRouter>
+            </OrderProvider>
           </CartProvider>
         </CustomerProvider>
       </ProductProvider>
