@@ -8,15 +8,26 @@ const getTokenFromCookies = () => {
   return tokenCookie ? tokenCookie.split('=')[1] : null;
 };
 
-const token = getTokenFromCookies();
-
 const instance = axios.create({
   baseURL: API_URL,
   withCredentials: true,
   headers: {
     'Content-type': 'application/json',
-    ...(token && { 'x-access-token': token }),
   },
 });
+
+// Interceptor to add token to headers before each request
+instance.interceptors.request.use(
+  (config) => {
+    const token = getTokenFromCookies();
+    if (token) {
+      config.headers['x-access-token'] = token;
+    }
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
 
 export default instance;
