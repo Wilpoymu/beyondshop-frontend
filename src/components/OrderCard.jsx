@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types';
-import { useProduct } from '../context/ProductContext';
 import currencyFormatter from '../utils/currencyFormater';
 import { Link } from 'react-router-dom';
+import { useOrder } from '../context/OrderContext';
 
 function OrderCard({ order }) {
-  const { deleteProduct, getDollarPrice } = useProduct();
+  const { getDollarPrice, deleteOrder } = useOrder();
 
   //format the date full date in DD/MM/YYYY
   const date = new Date(order.orderDate);
@@ -36,7 +36,7 @@ function OrderCard({ order }) {
         <div className="flex gap-x-2 items-center">
           <button
             onClick={() => {
-              deleteProduct(order._id);
+              deleteOrder(order._id);
             }}
           >
             delete

@@ -23,7 +23,6 @@ export const AuthProvider = ({ children }) => {
   const signup = async (user) => {
     try {
       const res = await registerRequest(user);
-      console.log(res.data);
       setIsAuthenticated(true);
       setUser(res.data);
     } catch (error) {

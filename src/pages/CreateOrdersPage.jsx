@@ -5,12 +5,13 @@ import Cart from '../components/Cart';
 import currencyFormatter from '../utils/currencyFormater';
 import { useCustomer } from '../context/CustomerContext';
 import Option from '../components/Option';
-import { createOrderRequest } from '../api/order';
 import { useNavigate } from 'react-router-dom';
+import { useOrder } from '../context/OrderContext';
 
 function CreateOrdersPage() {
   const { products, getProducts, getDollarPrice } = useProduct();
   const { addToCart, cart } = useCart();
+  const { createOrder } = useOrder();
   const { customers, getCustomers } = useCustomer();
   const navigate = useNavigate();
   const [selectedProduct, setSelectedProduct] = useState(null);
@@ -67,6 +68,8 @@ function CreateOrdersPage() {
     value: calculatePrice() * getDollarPrice(),
   });
 
+  const totalPrice = calculatePrice();
+
   const handleCreateOrder = () => {
     if (!selectedCustomer) {
       console.log('No customer selected');
@@ -75,16 +78,16 @@ function CreateOrdersPage() {
 
     const order = {
       clientId: selectedCustomer,
+      totalPrice: totalPrice,
       productsDetails: cart.map((product) => ({
         productId: product._id,
         quantity: product.quantity,
         price: product.price * product.quantity,
         unitPrice: product.price,
       })),
-      totalPrice: calculatePrice(),
     };
 
-    createOrderRequest(order);
+    createOrder(order);
     navigate('/orders');
   };
 
