@@ -15,6 +15,7 @@ import { CartProvider } from './context/CartContext';
 import NotFoundPage from './pages/NotFoundPage';
 import { CustomerProvider } from './context/CustomerContext';
 import OrdersPage from './pages/OrdersPage';
+import ViewOrderDetails from './pages/ViewOrderDetails';
 
 function App() {
   return (
@@ -37,6 +38,7 @@ function App() {
                       path="/create-orders"
                       element={<CreateOrdersPage />}
                     />
+                    <Route path="/orders/:id" element={<ViewOrderDetails />} />
                     <Route path="/add-product" element={<ProductFormPage />} />
                     <Route path="/products/:id" element={<ProductFormPage />} />
                     <Route path="/profile" element={<ProfilePage />} />
