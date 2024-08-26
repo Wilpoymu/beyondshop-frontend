@@ -30,7 +30,7 @@ function CreateCustomersPage() {
     } else {
       await createCustomer(data);
     }
-    navigate('/orders');
+    navigate('/customers');
   });
 
   return (
