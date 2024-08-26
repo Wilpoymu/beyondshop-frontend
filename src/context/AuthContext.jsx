@@ -1,7 +1,7 @@
 import { createContext, useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { loginRequest, registerRequest, verifyTokenRequest } from '../api/auth';
-import Cookies from 'js-cookie';
+import { loginRequest, registerRequest } from '../api/auth';
+import axios from '../api/axios';
 
 export const AuthContext = createContext();
 
@@ -34,7 +34,6 @@ export const AuthProvider = ({ children }) => {
   const signin = async (user) => {
     try {
       const res = await loginRequest(user);
-      console.log(res);
       setIsAuthenticated(true);
       setUser(res.data);
     } catch (error) {
@@ -48,9 +47,10 @@ export const AuthProvider = ({ children }) => {
   };
 
   const logout = () => {
-    Cookies.remove('token');
-    setIsAuthenticated(false);
-    setUser(null);
+    axios.post('/auth/logout').then(() => {
+      setIsAuthenticated(false);
+      setUser(null);
+    });
   };
 
   useEffect(() => {
@@ -64,32 +64,30 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     async function checkLogin() {
-      const cookies = Cookies.get();
-      if (!cookies.token) {
-        setIsAuthenticated(false);
-        setLoading(false);
-        return setUser(null);
-      }
       try {
-        const res = await verifyTokenRequest(cookies.token);
-        if (!res.data) {
+        const res = await axios.get('/auth/profile', { withCredentials: true });
+        if (res.data.username) {
+          setIsAuthenticated(true);
+          setUser(res.data);
+        } else {
           setIsAuthenticated(false);
-          setLoading(false);
-          return;
+          setUser(null);
         }
-
-        setIsAuthenticated(true);
-        setUser(res.data);
-        setLoading(false);
       } catch (error) {
         setIsAuthenticated(false);
         setUser(null);
+        if (error.response && error.response.status === 401) {
+          console.error("Unauthorized - Please check your login credentials.");
+        } else {
+          console.error("An error occurred:", error);
+        }
+      } finally {
         setLoading(false);
-        console.error(error);
       }
     }
     checkLogin();
   }, []);
+  
 
   return (
     <AuthContext.Provider

@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import { useProduct } from '../context/ProductContext';
 import currencyFormatter from '../utils/currencyFormater';
+import { Link } from 'react-router-dom';
 
 function OrderCard({ order }) {
   const { deleteProduct, getDollarPrice } = useProduct();
@@ -26,9 +27,12 @@ function OrderCard({ order }) {
   });
 
   return (
-    <div className="bg-zinc-800 max-w-md w-full p-10 rounded-md">
+    <div className="bg-zinc-800 max-w-sm w-full p-10 rounded-md">
       <header className="flex justify-between">
-        <h1 className="text-2xl font-bold">{formattedDate}</h1>
+        <div className="flex flex-col">
+          <h1 className="text-2xl font-bold">{order.clientId.name}</h1>
+          <h3 className="text-xl font-bold">{formattedDate}</h3>
+        </div>
         <div className="flex gap-x-2 items-center">
           <button
             onClick={() => {
@@ -37,6 +41,8 @@ function OrderCard({ order }) {
           >
             delete
           </button>
+          <Link to={`/orders/${order._id}`}>View</Link>
+
         </div>
       </header>{' '}
       <br />
@@ -53,5 +59,8 @@ OrderCard.propTypes = {
     _id: PropTypes.string.isRequired,
     orderDate: PropTypes.string.isRequired,
     totalPrice: PropTypes.number.isRequired,
+    clientId: PropTypes.shape({
+      name: PropTypes.string.isRequired,
+    }).isRequired,
   }).isRequired,
 };

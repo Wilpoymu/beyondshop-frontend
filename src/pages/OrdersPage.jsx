@@ -9,7 +9,6 @@ function OrdersPage() {
     try {
       const res = await getOrdersRequest();
       setOrders(res.data);
-      console.log(res.data);
     } catch (error) {
       console.log(error);
     }
@@ -18,8 +17,17 @@ function OrdersPage() {
   useEffect(() => {
     getOrders();
   }, []);
+
+  if (!orders.length) {
+    return (
+      <div className="flex justify-center items-center h-full">
+        <h1 className="text-2xl font-bold text-gray-500">No orders</h1>
+      </div>
+    );
+  }
+
   return (
-    <div>
+    <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-2">
       {orders.map((order) => (
         <OrderCard key={order._id} order={order} />
       ))}

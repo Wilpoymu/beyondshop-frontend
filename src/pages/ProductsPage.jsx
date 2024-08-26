@@ -9,7 +9,13 @@ function ProductsPage() {
     getProducts();
   }, []);
 
-  if (products.length === 0) return <h1>No Products</h1>;
+  if (!products.length) {
+    return (
+      <div className="flex justify-center items-center h-full">
+        <h1 className="text-2xl font-bold text-gray-500">No products</h1>
+      </div>
+    );
+  }
 
   return (
     <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-2">
