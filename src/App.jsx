@@ -18,6 +18,7 @@ import OrdersPage from './pages/OrdersPage';
 import ViewOrderDetails from './pages/ViewOrderDetails';
 import { OrderProvider } from './context/OrderContext';
 import CreateCustomersPage from './pages/CreateCustomersPage';
+import CustomersPage from './pages/CustomersPage';
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
                     <Route path="/register" element={<RegisterPage />} />
                     <Route path="/products" element={<ProductsPage />} />
                     <Route path="/orders" element={<OrdersPage />} />
+                    <Route path="/customers" element={<CustomersPage />} />
 
                     <Route element={<ProtectedRoute />}>
                       <Route
@@ -54,6 +56,7 @@ function App() {
                         element={<ProductFormPage />}
                       />
                       <Route path="/add-customer" element={<CreateCustomersPage />} />
+                      <Route path="/customers/:id" element={<CreateCustomersPage />} />
                       <Route path="/profile" element={<ProfilePage />} />
                     </Route>
 
