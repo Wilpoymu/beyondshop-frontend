@@ -8,3 +8,21 @@ body {
   color: #fff;
   font-family: 'Poppins', sans-serif;
 }
+
+
+.fixed-bottom-right {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #3b3b3b; /* Color de fondo */
+  padding: 10px 20px; /* Espaciado interno */
+  border-radius: 5px; /* Bordes redondeados */
+  color: white; /* Color del texto */
+  text-align: center; /* Alineación del texto */
+  text-decoration: none; /* Sin subrayado */
+  transition: background-color 0.3s; /* Transición suave para el hover */
+}
+
+.fixed-bottom-right:hover {
+  background-color: #4b4b4b; /* Color de fondo al pasar el ratón */
+}
