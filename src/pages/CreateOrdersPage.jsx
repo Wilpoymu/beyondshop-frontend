@@ -11,7 +11,7 @@ import { useOrder } from '../context/OrderContext';
 function CreateOrdersPage() {
   const { products, getProducts, getDollarPrice } = useProduct();
   const { addToCart, cart } = useCart();
-  const { createOrder } = useOrder();
+  const { createOrder, getOrders } = useOrder();
   const { customers, getCustomers } = useCustomer();
   const navigate = useNavigate();
   const [selectedProduct, setSelectedProduct] = useState(null);
@@ -70,7 +70,7 @@ function CreateOrdersPage() {
 
   const totalPrice = calculatePrice();
 
-  const handleCreateOrder = () => {
+  const handleCreateOrder = async () => {
     if (!selectedCustomer) {
       console.log('No customer selected');
       return;
@@ -87,7 +87,8 @@ function CreateOrdersPage() {
       })),
     };
 
-    createOrder(order);
+    await createOrder(order);
+    await getOrders(); // Actualizar las órdenes después de crear una nueva
     navigate('/orders');
   };
 
