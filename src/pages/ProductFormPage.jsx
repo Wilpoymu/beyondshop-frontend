@@ -10,21 +10,23 @@ function ProductFormPage() {
   const params = useParams();
 
   useEffect(() => {
-    async function loadProduct() {
-      if (params.id) {
-        const product = await getProduct(params.id);
-        setValue('name', product.name);
-        setValue('price', product.price);
-      }
-    }
     loadProduct();
   }, [getProduct, params.id, setValue]);
 
-  const onSubmit = handleSubmit((data) => {
+  async function loadProduct() {
     if (params.id) {
-      updateProduct(params.id, data);
+      const product = await getProduct(params.id);
+      setValue('name', product.name);
+      setValue('price', product.price);
+    }
+  }
+
+  const onSubmit = handleSubmit(async (data) => {
+    if (params.id) {
+      await updateProduct(params.id, data);
+      await loadProduct(); // Recargar el producto después de la actualización
     } else {
-      createProduct(data);
+      await createProduct(data);
     }
     navigate('/products');
   });
