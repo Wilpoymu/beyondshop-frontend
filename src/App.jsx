@@ -17,6 +17,7 @@ import { CustomerProvider } from './context/CustomerContext';
 import OrdersPage from './pages/OrdersPage';
 import ViewOrderDetails from './pages/ViewOrderDetails';
 import { OrderProvider } from './context/OrderContext';
+import CreateCustomersPage from './pages/CreateCustomersPage';
 
 function App() {
   return (
@@ -52,6 +53,7 @@ function App() {
                         path="/products/:id"
                         element={<ProductFormPage />}
                       />
+                      <Route path="/add-customer" element={<CreateCustomersPage />} />
                       <Route path="/profile" element={<ProfilePage />} />
                     </Route>
 

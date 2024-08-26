@@ -5,7 +5,7 @@ import Cart from '../components/Cart';
 import currencyFormatter from '../utils/currencyFormater';
 import { useCustomer } from '../context/CustomerContext';
 import Option from '../components/Option';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useOrder } from '../context/OrderContext';
 
 function CreateOrdersPage() {
@@ -144,6 +144,9 @@ function CreateOrdersPage() {
       >
         Create Order
       </button>
+      <Link className="fixed-bottom-right" to="/add-customer">
+        Create a customer
+      </Link>
     </div>
   );
 }
