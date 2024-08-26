@@ -17,10 +17,7 @@ function OrdersPage() {
         <div className="flex justify-center items-center h-full">
           <h1 className="text-2xl font-bold text-gray-500">No orders</h1>
         </div>
-        <Link
-          className="fixed-bottom-right"
-          to="/create-orders"
-        >
+        <Link className="fixed-bottom-right" to="/create-orders">
           Create an order
         </Link>
       </>
@@ -34,10 +31,7 @@ function OrdersPage() {
           <OrderCard key={order._id} order={order} />
         ))}
       </div>
-      <Link
-        className="fixed-bottom-right"
-        to="/create-orders"
-      >
+      <Link className="fixed-bottom-right" to="/create-orders">
         Create an order
       </Link>
     </div>

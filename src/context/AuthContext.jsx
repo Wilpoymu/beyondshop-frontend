@@ -76,9 +76,9 @@ export const AuthProvider = ({ children }) => {
         setIsAuthenticated(false);
         setUser(null);
         if (error.response && error.response.status === 401) {
-          console.error("Unauthorized - Please check your login credentials.");
+          console.error('Unauthorized - Please check your login credentials.');
         } else {
-          console.error("An error occurred:", error);
+          console.error('An error occurred:', error);
         }
       } finally {
         setLoading(false);
@@ -86,7 +86,6 @@ export const AuthProvider = ({ children }) => {
     }
     checkLogin();
   }, []);
-  
 
   return (
     <AuthContext.Provider
