@@ -42,7 +42,6 @@ function OrderCard({ order }) {
             delete
           </button>
           <Link to={`/orders/${order._id}`}>View</Link>
-
         </div>
       </header>{' '}
       <br />

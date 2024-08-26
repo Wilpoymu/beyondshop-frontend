@@ -15,7 +15,10 @@ function Cart() {
       <h1>Your Cart</h1>
       <ul className="flex flex-col gap-5 justify-between">
         {cart.map((product) => (
-          <li className='flex flex-row items-center justify-between w-50/100' key={product._id}>
+          <li
+            className="flex flex-row items-center justify-between w-50/100"
+            key={product._id}
+          >
             {product.name} - ${product.price}
             <select
               value={product.quantity}

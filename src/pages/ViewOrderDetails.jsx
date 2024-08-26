@@ -7,28 +7,28 @@ function ViewOrderDetails() {
   const params = useParams();
   const { getOrder, getDollarPrice } = useOrder();
   const [order, setOrder] = useState(null);
-  
+
   useEffect(() => {
     async function fetchOrder() {
       const fetchedOrder = await getOrder(params.id);
       setOrder(fetchedOrder);
     }
-  
+
     fetchOrder();
   }, [params.id, getOrder]);
-  
+
   if (!order) {
     return <div>Loading...</div>;
   }
-  
+
   const value = order.totalPrice;
   const colombianPrice = Math.round(order.totalPrice * getDollarPrice());
-  
+
   const dollar = currencyFormatter({
     currency: 'USD',
     value,
   });
-  
+
   const peso = currencyFormatter({
     currency: 'COP',
     value: colombianPrice,
@@ -77,8 +77,7 @@ function ViewOrderDetails() {
           <strong>Total Price USD:</strong> {dollar}
         </p>
         <p className="mb-1">
-          <strong>Total Price:</strong>{' '}
-          {peso}
+          <strong>Total Price:</strong> {peso}
         </p>
         <p className="mb-1">
           <strong>Order Date:</strong>{' '}

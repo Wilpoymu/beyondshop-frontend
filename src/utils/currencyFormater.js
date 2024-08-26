@@ -1,8 +1,8 @@
 export default function currencyFormatter({ currency, value }) {
-    const formatter = new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      minimumFractionDigits: 2,
-      currency,
-    });
-    return formatter.format(value);
-  }
+  const formatter = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    minimumFractionDigits: 2,
+    currency,
+  });
+  return formatter.format(value);
+}

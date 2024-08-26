@@ -7,9 +7,9 @@ import { useOrder } from '../context/OrderContext';
 
 function HomePage() {
   const { isAuthenticated } = useAuth();
-  const {products, getProducts} = useProduct();
-  const {customers, getCustomers} = useCustomer();
-  const {orders, getOrders} = useOrder();
+  const { products, getProducts } = useProduct();
+  const { customers, getCustomers } = useCustomer();
+  const { orders, getOrders } = useOrder();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -26,14 +26,18 @@ function HomePage() {
   const totalCustomers = customers.length;
   const totalOrders = orders.length;
 
-  const lastestProduct = products[products.length - 1] ? products[products.length - 1] : 'No products yet';
-  const lastestOrder = orders[orders.length - 1] ? orders[orders.length - 1].clientId.name : 'No orders yet';
-  console.log("🚀 ~ HomePage ~ orders:", orders)
+  const lastestProduct = products[products.length - 1]
+    ? products[products.length - 1]
+    : 'No products yet';
+  const lastestOrder = orders[orders.length - 1]
+    ? orders[orders.length - 1].clientId.name
+    : 'No orders yet';
+  console.log('🚀 ~ HomePage ~ orders:', orders);
 
   return (
     <div className="p-6">
       <h1 className="text-4xl font-bold mb-6">HomePage</h1>
-      
+
       {/* Estadísticas y Panel de Actividad */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 mb-6">
         <div className="bg-zinc-700 p-6 rounded-lg shadow-md">

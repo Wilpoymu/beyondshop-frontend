@@ -18,8 +18,8 @@ function CreateCustomersPage() {
       const customer = await getCustomer(params.id);
       setValue('document', customer.document);
       setValue('name', customer.name);
-        setValue('address', customer.address);
-        setValue('phone', customer.phone);
+      setValue('address', customer.address);
+      setValue('phone', customer.phone);
     }
   }
 

@@ -6,7 +6,6 @@ import currencyFormatter from '../utils/currencyFormater';
 function ProductCard({ product }) {
   const { deleteProduct, getDollarPrice } = useProduct();
 
-
   const value = product.price;
   const colombianPrice = Math.round(product.price * getDollarPrice());
 

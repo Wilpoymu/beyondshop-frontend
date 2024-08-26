@@ -14,10 +14,7 @@ function ProductsPage() {
   if (!products.length) {
     return (
       <>
-        <Link
-          className="fixed-bottom-right"
-          to="/add-product"
-        >
+        <Link className="fixed-bottom-right" to="/add-product">
           Create a product
         </Link>
         <div className="flex justify-center items-center h-full">
@@ -34,10 +31,7 @@ function ProductsPage() {
           <ProductCard product={product} key={product._id} />
         ))}
       </div>
-      <Link
-        className="fixed-bottom-right"
-        to="/add-product"
-      >
+      <Link className="fixed-bottom-right" to="/add-product">
         Create a product
       </Link>
     </div>

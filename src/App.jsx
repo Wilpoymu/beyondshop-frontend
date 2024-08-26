@@ -55,8 +55,14 @@ function App() {
                         path="/products/:id"
                         element={<ProductFormPage />}
                       />
-                      <Route path="/add-customer" element={<CreateCustomersPage />} />
-                      <Route path="/customers/:id" element={<CreateCustomersPage />} />
+                      <Route
+                        path="/add-customer"
+                        element={<CreateCustomersPage />}
+                      />
+                      <Route
+                        path="/customers/:id"
+                        element={<CreateCustomersPage />}
+                      />
                       <Route path="/profile" element={<ProfilePage />} />
                     </Route>
 
