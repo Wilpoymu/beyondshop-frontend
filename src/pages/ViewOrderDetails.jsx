@@ -83,14 +83,6 @@ function ViewOrderDetails() {
           <strong>Order Date:</strong>{' '}
           {new Date(order.orderDate).toLocaleString()}
         </p>
-        <p className="mb-1">
-          <strong>Created At:</strong>{' '}
-          {new Date(order.createdAt).toLocaleString()}
-        </p>
-        <p className="mb-1">
-          <strong>Updated At:</strong>{' '}
-          {new Date(order.updatedAt).toLocaleString()}
-        </p>
       </div>
     </div>
   );
