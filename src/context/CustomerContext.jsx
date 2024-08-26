@@ -33,7 +33,6 @@ export function CustomerProvider({ children }) {
 
   const createCustomer = async (customer) => {
     const res = await createCustomersRequest(customer);
-    console.log(res);
   };
 
   const deleteCustomer = async (id) => {
